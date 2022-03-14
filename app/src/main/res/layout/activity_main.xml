@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_mym" />
+    <EditText
+        android:id="@+id/etMainUsuario"
+        android:hint="Usuario"
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:drawablePadding="12dp"
+        android:layout_margin="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <EditText
+        android:id="@+id/etMainClave"
+        android:hint="Clave"
+        android:drawableStart="@drawable/ic_baseline_lock_open_24"
+        android:drawablePadding="12dp"
+        android:layout_margin="12dp"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <Button
+        android:id="@+id/btMainAceptar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:textSize="16sp"
+        android:textColor="@color/primaryTextColor"
+        android:text="ACEPTAR"
+        />
+
+</LinearLayout>

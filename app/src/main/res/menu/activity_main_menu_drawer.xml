@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<group>
+    <item
+        android:id="@+id/nav_item_cliente"
+        android:icon="@drawable/ic_client_mym"
+        android:title="Clientes"
+        />
+    <item
+        android:id="@+id/nav_item_registroPedido"
+        android:icon="@drawable/ic_pedido_mym"
+        android:title="Pedido"
+        />
+</group>
+    <item android:title="Consulta">
+        <menu>
+            <item
+                android:icon="@drawable/ic_search_client_mym"
+                android:title="Pedido"
+                />
+            <item
+                android:icon="@drawable/ic_sear_pedido_mym"
+                android:title="Pedido"
+                />
+        </menu>
+    </item>
+</menu>
