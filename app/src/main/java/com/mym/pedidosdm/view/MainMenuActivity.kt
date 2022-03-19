@@ -53,7 +53,8 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 startActivity(Intent(this,RegistroCliente::class.java))
             }
             R.id.nav_item_registroPedido -> {
-                Toast.makeText(this, "Registro Pedido", Toast.LENGTH_SHORT).show()
+                //startActivity(Intent(this,ProductOrderActivity::class.java))
+                startActivity(Intent(this,OrderProductActivity::class.java))
             }
         }
         drawer.closeDrawer(GravityCompat.START)

@@ -17,7 +17,7 @@ class RegistroCliente : AppCompatActivity() {
         setContentView(binding.root)
         //Código utilizado para colocar el navigationbar
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
-        toolbar.setTitle(R.string.title_app_mym);
+        toolbar.setTitle("REGISTRO DE CLIENTES");
         toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.primaryTextColor))
         toolbar.setBackgroundColor(ContextCompat.getColor(this,R.color.primaryColor))
         setSupportActionBar(toolbar)
