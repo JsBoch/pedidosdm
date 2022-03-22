@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.mym.pedidosdm.controller.MYMOrdersApplication.Companion.prefs
 import com.mym.pedidosdm.databinding.ActivityMainBinding
+import com.mym.pedidosdm.model.UsuarioBase
 import com.mym.pedidosdm.view.MainMenuActivity
 import org.json.JSONArray
 import org.json.JSONException
@@ -72,7 +73,10 @@ class MainActivity : AppCompatActivity() {
                 if(!response.isEmpty()) {
                     val jsonObject = JSONObject(response);
                     val userID = jsonObject.get("id").toString()
+                    val userName = jsonObject.get("nombre").toString()
                     if(userID.toInt() > 0) {
+                        UsuarioBase.get().usuarioId =  userID.toInt()
+                        UsuarioBase.get().usuarioNombre =  userName
                         savePreferences()
                         startActivity(Intent(this,MainMenuActivity::class.java))
                         finish()

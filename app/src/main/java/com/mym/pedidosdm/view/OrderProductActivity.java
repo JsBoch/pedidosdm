@@ -25,6 +25,7 @@ import com.mym.pedidosdm.R;
 import com.mym.pedidosdm.model.ClienteMYM;
 import com.mym.pedidosdm.model.ProductList;
 import com.mym.pedidosdm.model.RegistroProducto;
+import com.mym.pedidosdm.model.UsuarioBase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -121,7 +122,8 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
                 else
                 {
                     //AGREGAR A CLASE REGISTROPRODUCTO
-
+                    //CREAR UN SINGLETON PARA USUARIO
+                    Toast.makeText(OrderProductActivity.this, UsuarioBase.get().getUsuarioNombre(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
