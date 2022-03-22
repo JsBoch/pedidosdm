@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">pedidosdm</string>
-    <string name="URL_Login">http://192.168.0.12/wsdistribuidoramym/login.php</string>
+    <string name="URL_Login">http://192.168.1.39/wsdistribuidoramym/login.php</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="title_app_mym">Distribuidora MYM</string>
-    <string name="URL_ProductList">http://192.168.0.12/wsdistribuidoramym/productlist.php</string>
+    <string name="URL_ProductList">http://192.168.1.39/wsdistribuidoramym/productlist.php</string>
+    <string name="URL_ClientList">http://192.168.1.39/wsdistribuidoramym/clientlist.php</string>
 </resources>

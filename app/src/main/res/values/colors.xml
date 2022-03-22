@@ -7,5 +7,5 @@
     <color name="secondaryLightColor">#d45a5c</color>
     <color name="secondaryDarkColor">#69000d</color>
     <color name="primaryTextColor">#ffffff</color>
-
+    <color name="montoTotalTextColor">#146717</color>
 </resources>
