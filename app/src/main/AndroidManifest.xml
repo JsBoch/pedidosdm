@@ -3,7 +3,7 @@
     package="com.mym.pedidosdm">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".controller.MYMOrdersApplication"
@@ -15,9 +15,16 @@
         android:theme="@style/Theme.Pedidosdm"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CustomListPedidoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ConfirmacionPedidoActivity"
+            android:exported="false"
+            android:parentActivityName=".view.OrderProductActivity" />
+        <activity
             android:name=".view.OrderProductActivity"
             android:exported="false"
-            android:parentActivityName=".view.MainMenuActivity"/>
+            android:parentActivityName=".view.MainMenuActivity" />
         <activity
             android:name=".view.RegistroCliente"
             android:exported="false"

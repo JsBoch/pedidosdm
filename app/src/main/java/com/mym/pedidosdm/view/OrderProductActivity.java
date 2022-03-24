@@ -3,6 +3,7 @@ package com.mym.pedidosdm.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -44,6 +45,7 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
     EditText etObservacionesProducto;
     TextView tvMontoTotal;
     Button bttnAgregarProducto;
+    Button bttnConfirmarPedido;
 
     ArrayList<ProductList> productList = new ArrayList<ProductList>();
     ArrayList<ClienteMYM> clientList = new ArrayList<ClienteMYM>();
@@ -55,12 +57,14 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
     ProductList item;
     ClienteMYM itemCliente;
 
+    Integer positionCliente;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_product);
 
-        //Código utilizado para colocar el navigationbar
+        /* **************** NAVIGATION BAR ************************ */
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar_main);
         toolbar.setTitle("REGISTRO DE PEDIDOS");
         toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.primaryTextColor));
@@ -72,6 +76,7 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_mym_24);
         /* ************************************************************* */
 
+        /* **************** REFERENCIA DE VISTAS *************** */
         requestQueue = Volley.newRequestQueue(this);
         requestQueueCliente = Volley.newRequestQueue(this);
         spinnerProduct = findViewById(R.id.spOrderProductView);
@@ -80,6 +85,13 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
         spinnerCliente = findViewById(R.id.spOrderProductClienteView);
         etPrecioProducto = findViewById(R.id.etOrderProductPrecioView);
         etCantidadProducto = findViewById(R.id.etOrderProductCantidadView);
+        etObservacionesProducto = findViewById(R.id.etOrderProductObservacionesView);
+        tvMontoTotal = findViewById(R.id.tvOrderProductTotalView);
+        bttnAgregarProducto = findViewById(R.id.bttnOrderProductAgregarView);
+        bttnConfirmarPedido = findViewById(R.id.bttnOrderProductConfirmarPedidoView);
+
+        /* ********** LISTENERS ************************* */
+        //CANTIDAD: calculo del total entre precio y cantidad
         etCantidadProducto.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -103,9 +115,8 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
 
             }
         });
-        etObservacionesProducto = findViewById(R.id.etOrderProductObservacionesView);
-        tvMontoTotal = findViewById(R.id.tvOrderProductTotalView);
-        bttnAgregarProducto = findViewById(R.id.bttnOrderProductAgregarView);
+
+        //BOTON AGREGAR: Agrega un item con todos los datos del registro
         bttnAgregarProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,12 +133,34 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
                 else
                 {
                     //AGREGAR A CLASE REGISTROPRODUCTO
-                    //CREAR UN SINGLETON PARA USUARIO
-                    Toast.makeText(OrderProductActivity.this, UsuarioBase.get().getUsuarioNombre(), Toast.LENGTH_SHORT).show();
+                    RegistroProducto itemProducto = new RegistroProducto(UsuarioBase.get().getUsuarioId(), itemCliente.getCodigo(),
+                            item.getCodigo(),item.getNombre(),etObservacionesProducto.getText().toString().trim(),
+                            etPrecioProducto.getTag().toString(),Double.parseDouble(etPrecioProducto.getText().toString()),
+                            Integer.parseInt(etCantidadProducto.getText().toString()),
+                            Double.parseDouble(tvMontoTotal.getText().toString()));
+                    listaRegistro.add(itemProducto);
+                    //se almacena esta posición para saber que cliente estaba seleccionado y volverlo a seleccionar
+                    //si el usuario quiere agregar otro registro
+                    Toast.makeText(OrderProductActivity.this, "Agregado ", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        //BOTÓN CONFIRMAR: llama al activity de confirmación para validar el pedido
+        bttnConfirmarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                positionCliente = clientAdapter.getPosition(itemCliente);
+
+                Intent intent = new Intent(getApplicationContext(),ConfirmacionPedidoActivity.class);
+                intent.putExtra("clientePedido",itemCliente);
+                intent.putExtra("listaProducto",listaRegistro);
+                intent.putExtra("posicionCliente",positionCliente);
+                startActivity(intent);
+            }
+        });
+
+        //WS LISTA DE PRODUCTOS: obtiene el listado de productos de la db rmym
         String URL = getString(R.string.URL_ProductList);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 URL, null, new Response.Listener<JSONObject>() {
@@ -166,7 +199,7 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
         requestQueue.add(jsonObjectRequest);
 
 
-        /* ******************************** CARGA LISTADO DE CLIENTES ********************** */
+        //WS LISTADO CLIENTES: carga el listado de clientes de la db rmym
         String URLC = getString(R.string.URL_ClientList);
         JsonObjectRequest jsonObjectRequestCliente = new JsonObjectRequest(Request.Method.POST,
                 URLC, null, new Response.Listener<JSONObject>() {
@@ -184,6 +217,7 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
                                 android.R.layout.simple_spinner_item,clientList);
                         clientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinnerCliente.setAdapter(clientAdapter);
+                        spinnerCliente.setSelection(positionCliente);
                     }
                 }
                 catch (JSONException ex)
@@ -204,15 +238,26 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
 
         spinnerProduct.setOnItemSelectedListener(this);
         spinnerCliente.setOnItemSelectedListener(this);
+
+
+        //VALIDACIÓN PARA AGERGAR PRODUCTOS AL VENIR DE CONFIRMACIÓN DE PEDIDO
+        if((ArrayList<RegistroProducto>) getIntent().getSerializableExtra("listaProducto") != null) {
+            listaRegistro = (ArrayList<RegistroProducto>) getIntent().getSerializableExtra("listaProducto");
+        }
+        if((ClienteMYM) getIntent().getSerializableExtra("clientePedido") != null) {
+            itemCliente = (ClienteMYM) getIntent().getSerializableExtra("clientePedido");
+        }
+
+        positionCliente = getIntent().getExtras().getInt("posicionCliente");
     }
 
- /*Estos métodos se generan al poner el spinnerProduct.setOnItemSelectedListener(this);*/
+
+    /*Estos métodos se generan al poner el spinnerProduct.setOnItemSelectedListener(this);*/
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if(adapterView.getId() == R.id.spOrderProductView)
         {
             item = (ProductList) adapterView.getSelectedItem();
-            Toast.makeText(this,"codigo: " + item.getCodigo() + " nombre: " + item.getNombre(),Toast.LENGTH_LONG).show();
             ListadoPrecios();
         }
         else if(adapterView.getId() == R.id.spOrderProductPrecioView)
@@ -220,6 +265,7 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
             String precioLista = (String) adapterView.getSelectedItem();
             String[] precioSeleccionado =  precioLista.split(" - ");
             etPrecioProducto.setText(precioSeleccionado[1].toString());
+            etPrecioProducto.setTag(precioSeleccionado[0].toString());
         }
         else if(adapterView.getId() == R.id.spOrderProductClienteView)
         {

@@ -54,7 +54,11 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             }
             R.id.nav_item_registroPedido -> {
                 //startActivity(Intent(this,ProductOrderActivity::class.java))
-                startActivity(Intent(this,OrderProductActivity::class.java))
+                //startActivity(Intent(this,OrderProductActivity::class.java))
+                val intent : Intent = Intent(this,OrderProductActivity::class.java).apply {
+                    putExtra("posicionCliente", 0)
+                }
+                startActivity(intent);
             }
         }
         drawer.closeDrawer(GravityCompat.START)

@@ -1,6 +1,8 @@
 package com.mym.pedidosdm.model;
 
-public class ClienteMYM {
+import java.io.Serializable;
+
+public class ClienteMYM implements Serializable {
     private String codigo;
     private String nombre;
 

@@ -1,24 +1,17 @@
 package com.mym.pedidosdm
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.mym.pedidosdm.controller.MYMOrdersApplication.Companion.prefs
 import com.mym.pedidosdm.databinding.ActivityMainBinding
 import com.mym.pedidosdm.model.UsuarioBase
 import com.mym.pedidosdm.view.MainMenuActivity
-import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -79,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                         UsuarioBase.get().usuarioNombre =  userName
                         savePreferences()
                         startActivity(Intent(this,MainMenuActivity::class.java))
+
                         finish()
                     }
                     else

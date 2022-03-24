@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.ConfirmacionPedidoActivity">
+
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+<ListView
+    android:id="@+id/lvProductosPedido"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:footerDividersEnabled="true"
+    android:divider="@color/primaryDarkColor"
+    android:dividerHeight="2dp"
+    android:listSelector="@color/secondaryLightColor"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/primaryLightColor">
+        <TextView
+            android:text="TOTAL PEDIDO"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingLeft="5dp"
+            android:textColor="@color/primaryTextColor"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/tvTotalPedido"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            tools:text="1233.00"
+            android:textStyle="bold"
+            android:textColor="@color/primaryTextColor"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bttnAgregarProducto"
+        android:text="AGREGAR OTRO PRODUCTO"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="18dp"
+        android:backgroundTint="@color/secondaryLightColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/bttnEnviarPedido"
+        android:text="ENVIAR PEDIDO"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="18dp"
+        android:backgroundTint="@color/primaryColor"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"/>
+</LinearLayout>

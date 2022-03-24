@@ -1,6 +1,10 @@
 package com.mym.pedidosdm.model;
 
-public class RegistroProducto {
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class RegistroProducto implements Serializable {
     private Integer vendedorId;
     private String codigoCliente;
     private String codigo;
