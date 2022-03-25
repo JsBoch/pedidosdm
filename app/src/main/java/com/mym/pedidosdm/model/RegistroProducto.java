@@ -1,10 +1,12 @@
 package com.mym.pedidosdm.model;
 
+import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.NotSerializableException;
 import java.io.Serializable;
 
-public class RegistroProducto implements Serializable {
+public class RegistroProducto implements Parcelable {
     private Integer vendedorId;
     private String codigoCliente;
     private String codigo;
@@ -32,6 +34,47 @@ public class RegistroProducto implements Serializable {
         this.setCantidad(cantidad);
         this.setTotal(total);
     }
+
+    protected RegistroProducto(Parcel in) {
+        if (in.readByte() == 0) {
+            vendedorId = null;
+        } else {
+            vendedorId = in.readInt();
+        }
+        codigoCliente = in.readString();
+        codigo = in.readString();
+        nombre = in.readString();
+        observaciones = in.readString();
+        tipoPrecio = in.readString();
+        if (in.readByte() == 0) {
+            precio = null;
+        } else {
+            precio = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            cantidad = null;
+        } else {
+            cantidad = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            total = null;
+        } else {
+            total = in.readDouble();
+        }
+    }
+
+    public static final Creator<RegistroProducto> CREATOR = new Creator<RegistroProducto>() {
+        @Override
+        public RegistroProducto createFromParcel(Parcel in) {
+            return new RegistroProducto(in);
+        }
+
+        @Override
+        public RegistroProducto[] newArray(int size) {
+            return new RegistroProducto[size];
+        }
+    };
+
     public Integer getVendedorId() {
         return vendedorId;
     }
@@ -102,5 +145,43 @@ public class RegistroProducto implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (vendedorId == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(vendedorId);
+        }
+        parcel.writeString(codigoCliente);
+        parcel.writeString(codigo);
+        parcel.writeString(nombre);
+        parcel.writeString(observaciones);
+        parcel.writeString(tipoPrecio);
+        if (precio == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeDouble(precio);
+        }
+        if (cantidad == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(cantidad);
+        }
+        if (total == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeDouble(total);
+        }
     }
 }

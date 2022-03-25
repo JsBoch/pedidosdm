@@ -1,8 +1,11 @@
 package com.mym.pedidosdm.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class ClienteMYM implements Serializable {
+public class ClienteMYM implements Parcelable {
     private String codigo;
     private String nombre;
 
@@ -12,6 +15,23 @@ public class ClienteMYM implements Serializable {
         this.setNombre(nombre);
     }
 
+
+    protected ClienteMYM(Parcel in) {
+        codigo = in.readString();
+        nombre = in.readString();
+    }
+
+    public static final Creator<ClienteMYM> CREATOR = new Creator<ClienteMYM>() {
+        @Override
+        public ClienteMYM createFromParcel(Parcel in) {
+            return new ClienteMYM(in);
+        }
+
+        @Override
+        public ClienteMYM[] newArray(int size) {
+            return new ClienteMYM[size];
+        }
+    };
 
     public String getCodigo() {
         return codigo;
@@ -32,5 +52,16 @@ public class ClienteMYM implements Serializable {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(codigo);
+        parcel.writeString(nombre);
     }
 }

@@ -48,11 +48,14 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //LECTURA DE PARÁMETROS
-        listaRegistro = (ArrayList<RegistroProducto>) getIntent().getSerializableExtra("listaProducto");
-        itemCliente = (ClienteMYM) getIntent().getSerializableExtra("clientePedido");
+        //listaRegistro = (ArrayList<RegistroProducto>) getIntent().getSerializableExtra("listaProducto");
+        listaRegistro = getIntent().getParcelableArrayListExtra("listaProducto");
+        //itemCliente = (ClienteMYM) getIntent().getSerializableExtra("clientePedido");
+        itemCliente = getIntent().getParcelableExtra("clientePedido");
         clientePosition = getIntent().getExtras().getInt("posicionCliente");
 
-        CustomBaseAdapterProductos customAdapter = new CustomBaseAdapterProductos(getApplicationContext(),listaRegistro);
+        //CAMBIO, SOLO ERA EL listaProducto
+        CustomBaseAdapterProductos customAdapter = new CustomBaseAdapterProductos(getApplicationContext(), (ArrayList<RegistroProducto>) listaRegistro);
         binding.lvProductosPedido.setAdapter(customAdapter);
         SumarizarProductos();
         binding.lvProductosPedido.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Spinner
-        android:id="@+id/spOrderProductClienteView"
+        android:id="@+id/spCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 <TextView
@@ -30,7 +30,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
     <Spinner
-        android:id="@+id/spOrderProductView"
+        android:id="@+id/spProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp" />
@@ -41,12 +41,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Spinner
-        android:id="@+id/spOrderProductPrecioView"
+        android:id="@+id/spPrecio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
     <EditText
-        android:id="@+id/etOrderProductPrecioView"
+        android:id="@+id/etPrecioProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="textEnd"
@@ -55,7 +55,7 @@
         android:inputType="numberDecimal"
         />
     <EditText
-        android:id="@+id/etOrderProductCantidadView"
+        android:id="@+id/etCantidadProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -66,7 +66,7 @@
         android:inputType="number"
         />
     <TextView
-        android:id="@+id/tvOrderProductTotalView"
+        android:id="@+id/tvTotalProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -76,7 +76,7 @@
         android:layout_marginTop="10dp"
         />
     <EditText
-        android:id="@+id/etOrderProductObservacionesView"
+        android:id="@+id/etObservaciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
@@ -84,7 +84,7 @@
         android:hint="Observaciones"
         />
     <Button
-        android:id="@+id/bttnOrderProductAgregarView"
+        android:id="@+id/bttnAgregar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="AGREGAR"
@@ -93,7 +93,7 @@
         />
 
     <Button
-        android:id="@+id/bttnOrderProductConfirmarPedidoView"
+        android:id="@+id/bttnConfirmarPedido"
         android:textColor="@color/primaryTextColor"
         android:text="CONFIRMAR PEDIDO"
         android:layout_width="match_parent"
