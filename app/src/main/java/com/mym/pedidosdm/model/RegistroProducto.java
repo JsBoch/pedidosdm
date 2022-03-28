@@ -7,8 +7,6 @@ import java.io.NotSerializableException;
 import java.io.Serializable;
 
 public class RegistroProducto implements Parcelable {
-    private Integer vendedorId;
-    private String codigoCliente;
     private String codigo;
     private String nombre;
     private String observaciones;
@@ -21,11 +19,9 @@ public class RegistroProducto implements Parcelable {
     {
 
     }
-    public RegistroProducto(Integer vendedorId,String codigoCliente,String codigo,String nombre,String observaciones,
+    public RegistroProducto(String codigo,String nombre,String observaciones,
                             String tipoPrecio,Double precio,Integer cantidad,Double total)
     {
-        this.setVendedorId(vendedorId);
-        this.setCodigoCliente(codigoCliente);
         this.setCodigo(codigo);
         this.setNombre(nombre);
         this.setObservaciones(observaciones);
@@ -36,12 +32,6 @@ public class RegistroProducto implements Parcelable {
     }
 
     protected RegistroProducto(Parcel in) {
-        if (in.readByte() == 0) {
-            vendedorId = null;
-        } else {
-            vendedorId = in.readInt();
-        }
-        codigoCliente = in.readString();
         codigo = in.readString();
         nombre = in.readString();
         observaciones = in.readString();
@@ -74,22 +64,6 @@ public class RegistroProducto implements Parcelable {
             return new RegistroProducto[size];
         }
     };
-
-    public Integer getVendedorId() {
-        return vendedorId;
-    }
-
-    public void setVendedorId(Integer vendedorId) {
-        this.vendedorId = vendedorId;
-    }
-
-    public String getCodigoCliente() {
-        return codigoCliente;
-    }
-
-    public void setCodigoCliente(String codigoCliente) {
-        this.codigoCliente = codigoCliente;
-    }
 
     public String getCodigo() {
         return codigo;
@@ -154,13 +128,6 @@ public class RegistroProducto implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        if (vendedorId == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(vendedorId);
-        }
-        parcel.writeString(codigoCliente);
         parcel.writeString(codigo);
         parcel.writeString(nombre);
         parcel.writeString(observaciones);

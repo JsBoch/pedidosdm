@@ -115,7 +115,7 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
                 else
                 {
                     //AGREGAR A CLASE REGISTROPRODUCTO
-                     RegistroProducto itemProducto = new RegistroProducto(UsuarioBase.get().getUsuarioId(), itemCliente.getCodigo(),
+                     RegistroProducto itemProducto = new RegistroProducto(
                             item.getCodigo(),item.getNombre(),binding.etObservaciones.getText().toString().trim(),
                             binding.etPrecioProducto.getTag().toString(),Double.parseDouble(binding.etPrecioProducto.getText().toString()),
                             Integer.parseInt(binding.etCantidadProducto.getText().toString()),
@@ -137,13 +137,19 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
         binding.bttnConfirmarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                positionCliente = clientAdapter.getPosition(itemCliente);
+                if(listaRegistro.size() > 0) {
+                    positionCliente = clientAdapter.getPosition(itemCliente);
 
-                Intent intent = new Intent(getApplicationContext(),ConfirmacionPedidoActivity.class);
-                intent.putExtra("clientePedido",itemCliente);
-                intent.putExtra("listaProducto",listaRegistro);
-                intent.putExtra("posicionCliente",positionCliente);
-                startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), ConfirmacionPedidoActivity.class);
+                    intent.putExtra("clientePedido", itemCliente);
+                    intent.putExtra("listaProducto", listaRegistro);
+                    intent.putExtra("posicionCliente", positionCliente);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(OrderProductActivity.this, "Debe agregar productos para guardar.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -199,7 +205,8 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String codigo = jsonObject.optString("codigo");
                         String nombre = jsonObject.optString("nombre");
-                        clientList.add(new ClienteMYM(codigo,nombre));
+                        int departamentoId = jsonObject.optInt("iddepartamento");
+                        clientList.add(new ClienteMYM(codigo,nombre,departamentoId));
                         clientAdapter = new ArrayAdapter<>(OrderProductActivity.this,
                                 android.R.layout.simple_spinner_item,clientList);
                         clientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

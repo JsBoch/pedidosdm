@@ -8,17 +8,20 @@ import java.io.Serializable;
 public class ClienteMYM implements Parcelable {
     private String codigo;
     private String nombre;
+    private int departamentoId;
 
-    public ClienteMYM(String codigo,String nombre)
+    public ClienteMYM(String codigo,String nombre,int departamentoId)
     {
         this.setCodigo(codigo);
         this.setNombre(nombre);
+        this.setDepartamentoId(departamentoId);
     }
 
 
     protected ClienteMYM(Parcel in) {
         codigo = in.readString();
         nombre = in.readString();
+        departamentoId = in.readInt();
     }
 
     public static final Creator<ClienteMYM> CREATOR = new Creator<ClienteMYM>() {
@@ -48,6 +51,13 @@ public class ClienteMYM implements Parcelable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public int getDepartamentoId() {
+        return departamentoId;
+    }
+
+    public void setDepartamentoId(int departamentoId) {
+        this.departamentoId = departamentoId;
+    }
 
     @Override
     public String toString() {
@@ -63,5 +73,8 @@ public class ClienteMYM implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(codigo);
         parcel.writeString(nombre);
+        parcel.writeInt(departamentoId);
     }
+
+
 }
