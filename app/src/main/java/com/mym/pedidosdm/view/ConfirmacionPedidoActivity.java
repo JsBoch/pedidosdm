@@ -137,6 +137,7 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                 //JSON DETALLE
                                 JSONObject objJS = null;
                                 JSONArray jsArray = new JSONArray();
+
                                 for (RegistroProducto item : listaRegistro
                                     ) {
                                         objJS = new JSONObject();
@@ -148,8 +149,6 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                         objJS.put("precio",item.getPrecio());
                                         objJS.put("subtotal",item.getTotal());
                                         objJS.put("observaciones",item.getObservaciones());
-
-
                                         objJS.put("total",item.getTotal());
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -165,6 +164,7 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
+                                binding.etObservacionesGeneral.setText(objJSEnvio.toString());
                                 /* ++++++++++++++++++++++++++++++++++++++++ */
                                 RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                                 String URL = getString(R.string.URL_RegistroPedido);
@@ -176,7 +176,22 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                         try {
                                             JSONObject jsonObject = new JSONObject(response);
                                             Integer codigo = jsonObject.getInt("codigo");
-                                                Toast.makeText(ConfirmacionPedidoActivity.this, "CODIGO " + codigo, Toast.LENGTH_SHORT).show();
+                                            if(codigo == 1) {
+                                                binding.etObservacionesGeneral.setText("");
+                                                binding.tvTotalPedido.setText("");
+                                                listaRegistro.clear();
+                                                customAdapter.notifyDataSetChanged();
+                                                //volvemos a la actividad de pedido
+                                                Intent intent = new Intent(getApplicationContext(), OrderProductActivity.class);
+                                                intent.putExtra("posicionCliente", clientePosition);
+                                                intent.setFlags(intent.FLAG_ACTIVITY_SINGLE_TOP); //si ya existe el activity no lo vuelve a crear
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                            else
+                                            {
+                                                //crear un intent para mostrar mensaje de error
+                                            }
                                         }
                                         catch (JSONException ex)
                                         {
@@ -204,10 +219,6 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                         })
                         .setNegativeButton("NO",null)
                         .show();
-
-                binding.etObservacionesGeneral.setText("");
-                listaRegistro.clear();
-                customAdapter.notifyDataSetChanged();
             }
         });
     }
