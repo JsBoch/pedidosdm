@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     else
                     {
-                        Toast.makeText(this, "Usuario o clave incorrecto", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Usuario o clave incorrecto ", Toast.LENGTH_SHORT).show()
                     }
                 }
                 else{
