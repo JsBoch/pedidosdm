@@ -50,7 +50,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.nav_item_cliente -> {
-                startActivity(Intent(this,RegistroCliente::class.java))
+                startActivity(Intent(this,RegistroClienteActivity::class.java))
             }
             R.id.nav_item_registroPedido -> {
                 //startActivity(Intent(this,ProductOrderActivity::class.java))

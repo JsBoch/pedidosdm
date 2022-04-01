@@ -122,7 +122,6 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                 //JSON PRINCIPAL
                                 final JSONObject jsonObject = new JSONObject();
                                 try {
-
                                     jsonObject.put("id_departamento",itemCliente.getDepartamentoId());
                                     jsonObject.put("id_empleado", UsuarioBase.get().getUsuarioId());
                                     jsonObject.put("codigo_cliente",itemCliente.getCodigo());

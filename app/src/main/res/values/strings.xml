@@ -7,4 +7,7 @@
     <string name="URL_ProductList">http://192.168.0.4/wsdistribuidoramym/productlist.php</string>
     <string name="URL_ClientList">http://192.168.0.4/wsdistribuidoramym/clientlist.php</string>
     <string name="URL_RegistroPedido">http://192.168.0.4/wsdistribuidoramym/registro_pedido.php</string>
+    <string name="URL_ListaDepartamento">http://192.168.0.4/wsdistribuidoramym/lista_departamento.php</string>
+    <string name="URL_ListaMunicipio">http://192.168.0.4/wsdistribuidoramym/lista_municipio.php</string>
+    <string name="URL_RegistroCliente">http://192.168.0.4/wsdistribuidoramym/registro_cliente.php</string>
 </resources>
