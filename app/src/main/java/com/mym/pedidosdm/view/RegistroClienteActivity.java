@@ -74,7 +74,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements Adapte
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_mym_24);
         /* ************************************************************* */
 
-        //CAMPIO A MAYUSCULAS
+        //CAMBIO A MAYUSCULAS
         binding.etNombre.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         binding.etRazonSocial.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         binding.etDireccion.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
@@ -247,6 +247,12 @@ public class RegistroClienteActivity extends AppCompatActivity implements Adapte
     private boolean ValidarControles()
     {
         boolean grabar = true;
+        if (binding.etNit.length() == 0 && binding.etCUI.length() == 0)
+        {
+            binding.etNit.setError("Debe ingresar NIT o CUI");
+            binding.etCUI.setError("Debe ingresar CUI o NIT");
+            grabar = false;
+        }
         if (binding.etNombre.length() == 0)
         {
             binding.etNombre.setError("Debe ingresar el nombre");
@@ -287,6 +293,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements Adapte
                     nit = binding.etNit.getText().toString();
                 }
                 jsonCliente.put("nit",nit);
+                jsonCliente.put("cui",binding.etCUI.getText().toString());
                 jsonCliente.put("nombre",binding.etNombre.getText().toString());
                 jsonCliente.put("direccion",binding.etDireccion.getText().toString());
                 jsonCliente.put("telefono",binding.etTelefono.getText().toString());
@@ -312,6 +319,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements Adapte
                             Integer codigo = jsonRespuesta.getInt("codigo");
                             if (codigo == 1) {
                                 binding.etNit.setText("");
+                                binding.etCUI.setText("");
                                 binding.etNombre.setText("");
                                 binding.etRazonSocial.setText("");
                                 binding.etDireccion.setText("");

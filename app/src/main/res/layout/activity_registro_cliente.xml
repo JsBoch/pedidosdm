@@ -51,6 +51,15 @@
         android:drawablePadding="12dp"
         android:inputType="textCapCharacters"
         android:hint="NIT" />
+    <EditText
+        android:id="@+id/etCUI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:drawableStart="@drawable/ic_cliente_cui_24"
+        android:drawablePadding="12dp"
+        android:inputType="textCapCharacters"
+        android:hint="CUI"/>
 
     <EditText
         android:id="@+id/etNombre"
