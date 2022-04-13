@@ -164,7 +164,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements Adapte
                 new AlertDialog.Builder(RegistroClienteActivity.this)
                         .setIcon(R.drawable.ic_dialog_question_24)
                         .setTitle("GUARDAR REGISTRO")
-                        .setMessage("¿Está segur@ que desea eliminar el item?")
+                        .setMessage("¿Está segur@ que desea guardar el registro?")
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -307,8 +307,6 @@ public class RegistroClienteActivity extends AppCompatActivity implements Adapte
                 jsonCliente.put("transporte",binding.etTransporte.getText().toString());
                 jsonCliente.put("codigo_postal",itemDepartamento.getCodigo_postal());
 
-                Toast.makeText(this, "municipio " + itemMunicipio.getId_municipio(), Toast.LENGTH_SHORT).show();
-
                 RequestQueue queueCliente = Volley.newRequestQueue(RegistroClienteActivity.this);
                 String URLRegistroCliente = getString(R.string.URL_RegistroCliente);
                 StringRequest requestCliente = new StringRequest(Request.Method.POST, URLRegistroCliente, new Response.Listener<String>() {
@@ -328,6 +326,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements Adapte
                                 binding.etRegion.setText("");
                                 binding .etTransporte.setText("");
                                 binding.etObservaciones.setText("");
+                                Toast.makeText(RegistroClienteActivity.this, "Registro almacenado", Toast.LENGTH_SHORT).show();
                             } else {
                                 //Crear activity de error
                             }

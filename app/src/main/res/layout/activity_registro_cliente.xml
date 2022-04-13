@@ -1,156 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".view.RegistroClienteActivity">
 
-    <include
-        layout="@layout/app_bar_main"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="3dp"
-        android:text="DEPARTAMENTO" />
+        <include
+            layout="@layout/app_bar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Spinner
-        android:id="@+id/spDepartamento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:text="DEPARTAMENTO" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="3dp"
-        android:text="MUNICIPIO" />
+        <Spinner
+            android:id="@+id/spDepartamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spMunicipio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:text="MUNICIPIO" />
 
-    <EditText
-        android:id="@+id/etNit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:drawableStart="@drawable/ic_nit_cliente_24"
-        android:drawablePadding="12dp"
-        android:inputType="textCapCharacters"
-        android:hint="NIT" />
-    <EditText
-        android:id="@+id/etCUI"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:drawableStart="@drawable/ic_cliente_cui_24"
-        android:drawablePadding="12dp"
-        android:inputType="textCapCharacters"
-        android:hint="CUI"/>
+        <Spinner
+            android:id="@+id/spMunicipio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:drawableStart="@drawable/ic_cliente_add_24"
-        android:drawablePadding="12dp"
-        android:inputType="textCapCharacters"
-        android:hint="Nombre" />
+        <EditText
+            android:id="@+id/etNit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_nit_cliente_24"
+            android:drawablePadding="12dp"
+            android:hint="NIT"
+            android:inputType="textCapCharacters" />
 
-    <EditText
-        android:id="@+id/etRazonSocial"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:drawableStart="@drawable/ic_cliente_reazonsocial_24"
-        android:drawablePadding="12dp"
-        android:inputType="textCapCharacters"
-        android:hint="Razon Social" />
+        <EditText
+            android:id="@+id/etCUI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_cui_24"
+            android:drawablePadding="12dp"
+            android:hint="CUI"
+            android:inputType="textCapCharacters" />
 
-    <EditText
-        android:id="@+id/etDireccion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:inputType="textCapCharacters"
-        android:drawableStart="@drawable/ic_cliente_direccion_24"
-        android:drawablePadding="12dp"
-        android:hint="Dirección" />
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_add_24"
+            android:drawablePadding="12dp"
+            android:hint="Nombre"
+            android:inputType="textCapCharacters" />
 
-    <EditText
-        android:id="@+id/etTelefono"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:drawableStart="@drawable/ic_cliente_telefono_24"
-        android:drawablePadding="12dp"
-        android:hint="Telefono"
-        android:inputType="phone" />
+        <EditText
+            android:id="@+id/etRazonSocial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_reazonsocial_24"
+            android:drawablePadding="12dp"
+            android:hint="Razon Social"
+            android:inputType="textCapCharacters" />
 
-    <EditText
-        android:id="@+id/etCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:drawableStart="@drawable/ic_cliente_correo_24"
-        android:drawablePadding="12dp"
-        android:hint="Correo"
-        android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/etDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_direccion_24"
+            android:drawablePadding="12dp"
+            android:hint="Dirección"
+            android:inputType="textCapCharacters" />
 
-    <EditText
-        android:id="@+id/etRegion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:inputType="textCapCharacters"
-        android:drawableStart="@drawable/ic_cliente_region_map_24"
-        android:drawablePadding="12dp"
-        android:hint="Region" />
+        <EditText
+            android:id="@+id/etTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_telefono_24"
+            android:drawablePadding="12dp"
+            android:hint="Telefono"
+            android:inputType="phone" />
 
-    <EditText
-        android:id="@+id/etTransporte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:inputType="textCapCharacters"
-        android:drawableStart="@drawable/ic_cliente_transporte_transit_24"
-        android:drawablePadding="12dp"
-        android:hint="Transporte" />
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_correo_24"
+            android:drawablePadding="12dp"
+            android:hint="Correo"
+            android:inputType="textEmailAddress" />
 
-    <EditText
-        android:id="@+id/etObservaciones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:drawableStart="@drawable/ic_cliente_observaciones_notes_24"
-        android:drawablePadding="12dp"
-        android:hint="Observaciones" />
+        <EditText
+            android:id="@+id/etRegion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_region_map_24"
+            android:drawablePadding="12dp"
+            android:hint="Region"
+            android:inputType="textCapCharacters" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        <EditText
+            android:id="@+id/etTransporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_transporte_transit_24"
+            android:drawablePadding="12dp"
+            android:hint="Transporte"
+            android:inputType="textCapCharacters" />
 
-    <Button
-        android:id="@+id/bttnGuardar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="GUARDAR"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/etObservaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:drawableStart="@drawable/ic_cliente_observaciones_notes_24"
+            android:drawablePadding="12dp"
+            android:hint="Observaciones" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/bttnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GUARDAR"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

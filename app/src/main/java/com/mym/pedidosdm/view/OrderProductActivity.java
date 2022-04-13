@@ -206,7 +206,8 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
                         String codigo = jsonObject.optString("codigo");
                         String nombre = jsonObject.optString("nombre");
                         int departamentoId = jsonObject.optInt("iddepartamento");
-                        clientList.add(new ClienteMYM(codigo,nombre,departamentoId));
+                        int municipioId = jsonObject.optInt("idmunicipio");
+                        clientList.add(new ClienteMYM(codigo,nombre,departamentoId,municipioId));
                         clientAdapter = new ArrayAdapter<>(OrderProductActivity.this,
                                 android.R.layout.simple_spinner_item,clientList);
                         clientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -233,7 +234,7 @@ public class OrderProductActivity extends AppCompatActivity implements AdapterVi
         binding.spProducto.setOnItemSelectedListener(this);
         binding.spCliente.setOnItemSelectedListener(this);
 
-        //VALIDACIÓN PARA AGERGAR PRODUCTOS AL VENIR DE CONFIRMACIÓN DE PEDIDO
+        //VALIDACIÓN PARA AGREGAR PRODUCTOS AL VENIR DE CONFIRMACIÓN DE PEDIDO
         if(getIntent().getSerializableExtra("listaProducto") != null) {
             //listaRegistro = (ArrayList<RegistroProducto>)getIntent().getSerializableExtra("listaProducto");
             listaRegistro = getIntent().getParcelableArrayListExtra("listaProducto");

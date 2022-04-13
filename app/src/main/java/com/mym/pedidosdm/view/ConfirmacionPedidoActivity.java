@@ -123,6 +123,7 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                 final JSONObject jsonObject = new JSONObject();
                                 try {
                                     jsonObject.put("id_departamento",itemCliente.getDepartamentoId());
+                                    jsonObject.put("id_municipio",itemCliente.getMunicipioId());
                                     jsonObject.put("id_empleado", UsuarioBase.get().getUsuarioId());
                                     jsonObject.put("codigo_cliente",itemCliente.getCodigo());
                                     jsonObject.put("nombre_cliente",itemCliente.getNombre());
@@ -163,7 +164,7 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
-                                binding.etObservacionesGeneral.setText(objJSEnvio.toString());
+                                //binding.etObservacionesGeneral.setText(jsonObject.toString());
                                 /* ++++++++++++++++++++++++++++++++++++++++ */
                                 RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                                 String URL = getString(R.string.URL_RegistroPedido);
@@ -190,10 +191,12 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                             else
                                             {
                                                 //crear un intent para mostrar mensaje de error
+                                                Toast.makeText(ConfirmacionPedidoActivity.this, codigo.toString(), Toast.LENGTH_LONG).show();
                                             }
                                         }
                                         catch (JSONException ex)
                                         {
+                                            Toast.makeText(ConfirmacionPedidoActivity.this, ex.getMessage(), Toast.LENGTH_LONG).show();
                                             ex.printStackTrace();
                                         }
                                     }

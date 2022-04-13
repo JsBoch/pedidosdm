@@ -9,12 +9,14 @@ public class ClienteMYM implements Parcelable {
     private String codigo;
     private String nombre;
     private int departamentoId;
+    private int municipioId;
 
-    public ClienteMYM(String codigo,String nombre,int departamentoId)
+    public ClienteMYM(String codigo,String nombre,int departamentoId,int municipioId)
     {
         this.setCodigo(codigo);
         this.setNombre(nombre);
         this.setDepartamentoId(departamentoId);
+        this.setMunicipioId(municipioId);
     }
 
 
@@ -22,6 +24,7 @@ public class ClienteMYM implements Parcelable {
         codigo = in.readString();
         nombre = in.readString();
         departamentoId = in.readInt();
+        municipioId = in.readInt();
     }
 
     public static final Creator<ClienteMYM> CREATOR = new Creator<ClienteMYM>() {
@@ -74,7 +77,15 @@ public class ClienteMYM implements Parcelable {
         parcel.writeString(codigo);
         parcel.writeString(nombre);
         parcel.writeInt(departamentoId);
+        parcel.writeInt(municipioId);
     }
 
 
+    public int getMunicipioId() {
+        return municipioId;
+    }
+
+    public void setMunicipioId(int municipioId) {
+        this.municipioId = municipioId;
+    }
 }
