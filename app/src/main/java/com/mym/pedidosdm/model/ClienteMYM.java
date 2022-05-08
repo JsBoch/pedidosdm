@@ -3,6 +3,8 @@ package com.mym.pedidosdm.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class ClienteMYM implements Parcelable {
@@ -11,14 +13,21 @@ public class ClienteMYM implements Parcelable {
     private int departamentoId;
     private int municipioId;
 
-    public ClienteMYM(String codigo,String nombre,int departamentoId,int municipioId)
+    /*public ClienteMYM(String codigo,String nombre,int departamentoId,int municipioId)
     {
         this.setCodigo(codigo);
         this.setNombre(nombre);
         this.setDepartamentoId(departamentoId);
         this.setMunicipioId(municipioId);
-    }
+    }*/
 
+    public ClienteMYM(JSONObject jsonObject)
+    {
+        this.setCodigo(jsonObject.optString("codigo"));
+        this.setNombre(jsonObject.optString("nombre"));
+        this.setDepartamentoId(jsonObject.optInt("iddepartamento"));
+        this.setMunicipioId(jsonObject.optInt("idmunicipio"));
+    }
 
     protected ClienteMYM(Parcel in) {
         codigo = in.readString();

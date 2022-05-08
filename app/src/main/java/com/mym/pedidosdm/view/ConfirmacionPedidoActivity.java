@@ -24,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mym.pedidosdm.R;
 import com.mym.pedidosdm.databinding.ActivityConfirmacionPedidoBinding;
+import com.mym.pedidosdm.model.ClienteBase;
 import com.mym.pedidosdm.model.ClienteMYM;
 import com.mym.pedidosdm.model.CustomBaseAdapterProductos;
 import com.mym.pedidosdm.model.ProductList;
@@ -45,8 +46,8 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
     private ActivityConfirmacionPedidoBinding binding;
 
     ArrayList<RegistroProducto> listaRegistro;
-    ClienteMYM itemCliente;
-    int clientePosition;
+    //ClienteMYM itemCliente;
+    //int clientePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,8 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
         //listaRegistro = (ArrayList<RegistroProducto>) getIntent().getSerializableExtra("listaProducto");
         listaRegistro = getIntent().getParcelableArrayListExtra("listaProducto");
         //itemCliente = (ClienteMYM) getIntent().getSerializableExtra("clientePedido");
-        itemCliente = getIntent().getParcelableExtra("clientePedido");
-        clientePosition = getIntent().getExtras().getInt("posicionCliente");
+        //itemCliente = getIntent().getParcelableExtra("clientePedido");
+        //clientePosition = getIntent().getExtras().getInt("posicionCliente");
 
         //CAMBIO, SOLO ERA EL listaProducto
         CustomBaseAdapterProductos customAdapter = new CustomBaseAdapterProductos(getApplicationContext(), (ArrayList<RegistroProducto>) listaRegistro);
@@ -101,9 +102,9 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),OrderProductActivity.class);
-                intent.putExtra("clientePedido",itemCliente);
+                //intent.putExtra("clientePedido",itemCliente);
                 intent.putExtra("listaProducto",listaRegistro);
-                intent.putExtra("posicionCliente",clientePosition);
+                //intent.putExtra("posicionCliente",clientePosition);
                 intent.setFlags(intent.FLAG_ACTIVITY_SINGLE_TOP); //si ya existe el activity no lo vuelve a crear
                 startActivity(intent);
             }
@@ -122,11 +123,11 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                 //JSON PRINCIPAL
                                 final JSONObject jsonObject = new JSONObject();
                                 try {
-                                    jsonObject.put("id_departamento",itemCliente.getDepartamentoId());
-                                    jsonObject.put("id_municipio",itemCliente.getMunicipioId());
+                                    jsonObject.put("id_departamento", ClienteBase.get().getCliente().getDepartamentoId()); //itemCliente.getDepartamentoId());
+                                    jsonObject.put("id_municipio",ClienteBase.get().getCliente().getMunicipioId()); //itemCliente.getMunicipioId());
                                     jsonObject.put("id_empleado", UsuarioBase.get().getUsuarioId());
-                                    jsonObject.put("codigo_cliente",itemCliente.getCodigo());
-                                    jsonObject.put("nombre_cliente",itemCliente.getNombre());
+                                    jsonObject.put("codigo_cliente",ClienteBase.get().getCliente().getCodigo()); //itemCliente.getCodigo());
+                                    jsonObject.put("nombre_cliente",ClienteBase.get().getCliente().getNombre()); //itemCliente.getNombre());
                                     String observaciones = binding.etObservacionesGeneral.getText().toString();
                                     jsonObject.put("observaciones",observaciones);
                                 } catch (JSONException e) {
@@ -181,9 +182,10 @@ public class ConfirmacionPedidoActivity extends AppCompatActivity {
                                                 binding.tvTotalPedido.setText("");
                                                 listaRegistro.clear();
                                                 customAdapter.notifyDataSetChanged();
+                                                ClienteBase.get().setCliente(null);
                                                 //volvemos a la actividad de pedido
                                                 Intent intent = new Intent(getApplicationContext(), OrderProductActivity.class);
-                                                intent.putExtra("posicionCliente", clientePosition);
+                                                //intent.putExtra("posicionCliente", clientePosition);
                                                 intent.setFlags(intent.FLAG_ACTIVITY_SINGLE_TOP); //si ya existe el activity no lo vuelve a crear
                                                 startActivity(intent);
                                                 finish();

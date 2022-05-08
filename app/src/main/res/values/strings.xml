@@ -5,9 +5,10 @@
     <string name="navigation_drawer_close">Close</string>
     <string name="title_app_mym">Distribuidora MYM</string>
     <string name="URL_ProductList">http://192.168.0.4/wsdistribuidoramym/productlist.php</string>
-    <string name="URL_ClientList">http://192.168.0.4/wsdistribuidoramym/clientlist.php</string>
+    <string name="URL_ClientList">http://192.168.0.4/wsdistribuidoramym/clientlist.php?cliente=</string>
     <string name="URL_RegistroPedido">http://192.168.0.4/wsdistribuidoramym/registro_pedido.php</string>
     <string name="URL_ListaDepartamento">http://192.168.0.4/wsdistribuidoramym/lista_departamento.php</string>
     <string name="URL_ListaMunicipio">http://192.168.0.4/wsdistribuidoramym/lista_municipio.php</string>
     <string name="URL_RegistroCliente">http://192.168.0.4/wsdistribuidoramym/registro_cliente.php</string>
+    <string name="URL_ProductoAutoComplete">http://192.168.0.4/wsdistribuidoramym/lista_producto.php?producto=</string>
 </resources>
